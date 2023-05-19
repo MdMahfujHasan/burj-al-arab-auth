@@ -1,12 +1,17 @@
 import React, { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 
 const Login = () => {
     const { signInEmailPassword, resetPasswordEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const emailRef = useRef();
+
+    const eyeIcon = <EyeIcon className="h-6 w-6" />;
+    const eyeSlashIcon = <EyeSlashIcon className="h-6 w-6" />;
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -60,11 +65,15 @@ const Login = () => {
                     <input type="email" placeholder="Your Email" name="email" id="email" className="input input-bordered input-accent w-full max-w-xs" ref={emailRef} required />
                 </div>
 
-                <div>
+                <div className='relative'>
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input type="password" placeholder="Your Password" name="password" id="password" className="input input-bordered input-accent w-full max-w-xs" required />
+                    <input type={showPassword ? "text" : "password"} placeholder="Your Password" name="password" id="password" className="input input-bordered input-accent w-full max-w-xs" required />
+                    <button onClick={() => setShowPassword(!showPassword)} className='absolute top-12 left-72'>
+                        {showPassword ? eyeIcon : eyeSlashIcon}
+                    </button>
+
                 </div>
                 <input className="btn btn-active btn-accent mt-3" type="submit" value="Login" />
             </form>
