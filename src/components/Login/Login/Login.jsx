@@ -82,7 +82,7 @@ const Login = () => {
                 onClick={handleForgetPassword}>
                 <small>Forgotten password?</small>
             </p>
-            <p><small>New user? <Link className='text-blue-500 hover:underline hover:underline-offset-2' to="/sign-up">Sign Up</Link></small></p>
+            <p><small>New user? <Link className='text-blue-500 hover:underline hover:underline-offset-2' to="/signup">Sign Up</Link></small></p>
             <p className='text-rose-500'><small>{error}</small></p>
             <p className='text-teal-500'><small>{success}</small></p>
         </div>
